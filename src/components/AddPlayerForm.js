@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
-class AddPlayerForm extends Component {
+class AddPlayerForm extends PureComponent {
 
   state = {
     value: ''
