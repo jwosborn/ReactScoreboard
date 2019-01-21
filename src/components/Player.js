@@ -21,7 +21,7 @@ class Player extends PureComponent {
         index,
         changeScore,
         isHighestScore,
-        handleFindHighScore
+        highScore
       } = this.props;
       if (isHighestScore === false) {
         return (
@@ -60,7 +60,7 @@ class Player extends PureComponent {
                 score={ score }
                 changeScore={ changeScore }
                 index={index}
-                handleFindHighScore={ handleFindHighScore }
+                highScore={ highScore }
             />
           </div>          
         )

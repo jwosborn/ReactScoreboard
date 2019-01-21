@@ -53,7 +53,12 @@ class App extends Component {
   }
   
   handleFindHighScore = () => {
-    console.log(Math.max(this.player.score));
+    const scores = this.state.players.map( p => p.score );
+    const highScore = Math.max(...scores);
+    if (highScore) {
+      return highScore;
+    } return null;
+  
   }
 
   handleAddPlayer = (name) => {
@@ -73,6 +78,8 @@ class App extends Component {
   }
 
   render() {
+    const highScore = this.handleFindHighScore();
+
     return (
       <div className="scoreboard">
         <Header players={this.state.players} />
@@ -87,8 +94,8 @@ class App extends Component {
             key={player.id.toString()} 
             index={index}
             removePlayer={ this.handleRemovePlayer }  
-            isHighestScore={ player.isHighestScore } 
-            handleFindHighScore={this.handleFindHighScore}       
+            isHighestScore={ highScore === player.score } 
+            highScore={this.highScore}       
           />
         )}
 
