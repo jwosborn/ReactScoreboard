@@ -11,27 +11,32 @@ class App extends Component {
       {
         name: "Guil",
         score: 0,
-        id: 1
+        id: 1,
+        isHighestScore: false
       },
       {
         name: "Treasure",
         score: 0,
-        id: 2
+        id: 2,
+        isHighestScore: false
       },
       {
         name: "Ashley",
         score: 0,
-        id: 3
+        id: 3,
+        isHighestScore: false
       },
       {
         name: "James",
-        score: 0,
-        id: 4
+        score: 1,
+        id: 4,
+        isHighestScore: false
       }
     ]
   };
 
  prevPlayerId = 4;
+
 
   handleScoreChange = (index, delta) => {
     this.setState( prevState => ({
@@ -46,6 +51,10 @@ class App extends Component {
       };
     });
   }
+  
+  handleFindHighScore = () => {
+    console.log( Math.max(this.player.score) );
+  }
 
   handleAddPlayer = (name) => {
     this.setState( prevState => {
@@ -55,7 +64,8 @@ class App extends Component {
           {
             name,
             score: 0,
-            id: this.prevPlayerId += 1
+            id: this.prevPlayerId += 1,
+            isHighestScore: false
           }
         ]
       }
@@ -65,10 +75,7 @@ class App extends Component {
   render() {
     return (
       <div className="scoreboard">
-        <Header 
-          title="Scoreboard" 
-          players={this.state.players} 
-        />
+        <Header players={this.state.players} />
   
         {/* Players list */}
         {this.state.players.map( (player, index) =>
@@ -79,7 +86,9 @@ class App extends Component {
             changeScore={ this.handleScoreChange }
             key={player.id.toString()} 
             index={index}
-            removePlayer={this.handleRemovePlayer}           
+            removePlayer={ this.handleRemovePlayer }  
+            isHighestScore={ player.isHighestScore } 
+            handleFindHighScore={this.handleFindHighScore}       
           />
         )}
 
