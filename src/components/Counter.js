@@ -7,7 +7,7 @@ const Counter = ({index, score, changeScore, handleFindHighScore}) => {
     return (
     <div className="counter">
         <button className="counter-action decrement" onClick={() => changeScore( index, -1)} > - </button>
-        <span className="counter-score"onChange={() => handleFindHighScore()}>{ score }</span>
+        <span className="counter-score" onChange={() => handleFindHighScore()}>{ score }</span>
         <button className="counter-action increment" onClick={() => changeScore( index, 1)}> + </button>
     </div>
     );

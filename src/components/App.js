@@ -53,7 +53,7 @@ class App extends Component {
   }
   
   handleFindHighScore = () => {
-    console.log( Math.max(this.player.score) );
+    console.log(Math.max(this.player.score));
   }
 
   handleAddPlayer = (name) => {
