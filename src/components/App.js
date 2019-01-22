@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import { Provider } from './Context'
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
 
@@ -28,7 +29,7 @@ class App extends Component {
       },
       {
         name: "James",
-        score: 1,
+        score: 0,
         id: 4,
         isHighestScore: false
       }
@@ -81,26 +82,28 @@ class App extends Component {
     const highScore = this.handleFindHighScore();
 
     return (
-      <div className="scoreboard">
-        <Header players={this.state.players} />
-  
-        {/* Players list */}
-        {this.state.players.map( (player, index) =>
-          <Player 
-            name={player.name}
-            score= { player.score }
-            id={player.id}
-            changeScore={ this.handleScoreChange }
-            key={player.id.toString()} 
-            index={index}
-            removePlayer={ this.handleRemovePlayer }  
-            isHighestScore={ highScore === player.score } 
-            highScore={this.highScore}       
-          />
-        )}
+      <Provider value={this.state.players}>
+        <div className="scoreboard">
+          <Header />
+    
+          {/* Players list */}
+          {this.state.players.map( (player, index) =>
+            <Player 
+              name={player.name}
+              score= { player.score }
+              id={player.id}
+              changeScore={ this.handleScoreChange }
+              key={player.id.toString()} 
+              index={index}
+              removePlayer={ this.handleRemovePlayer }  
+              isHighestScore={ highScore === player.score } 
+              highScore={this.highScore}       
+            />
+          )}
 
-        <AddPlayerForm addPlayer={this.handleAddPlayer}/>
-      </div>
+          <AddPlayerForm addPlayer={this.handleAddPlayer}/>
+        </div>
+      </Provider>
     );
   }
 }
