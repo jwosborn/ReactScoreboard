@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Consumer } from './Context';
 import Counter from './Counter'
 
 class Player extends PureComponent {
@@ -8,13 +9,11 @@ class Player extends PureComponent {
     index: PropTypes.number,
     score: PropTypes.number.isRequired,
     id: PropTypes.number,
-    removePlayer: PropTypes.func,
     name: PropTypes.string.isRequired
   };
     render() {
       const {
         name, 
-        removePlayer,
         id,
         score, 
         index,
@@ -24,15 +23,18 @@ class Player extends PureComponent {
       if (isHighestScore === false) {
         return (
           <div className="player">
-            <span className="player-name">
-              <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
-              <svg viewBox="0 0 44 35">
-                <path d="M26.7616 10.6207L21.8192 0L16.9973 10.5603C15.3699 14.1207 10.9096 15.2672 7.77534 12.9741L0 7.24138L6.56986 28.8448H37.0685L43.5781 7.72414L35.7425 13.0948C32.6685 15.2672 28.3288 14.0603 26.7616 10.6207Z" transform="translate(0 0.301727)"/>
-                <rect width="30.4986" height="3.07759" transform="translate(6.56987 31.5603)"/>
-              </svg>
-  
-              { name }
-            </span>
+            <Consumer>
+            {context => (
+              <span className="player-name">
+                <button className="remove-player" onClick={() => context.actions.removePlayer(id)}>✖</button>
+                <svg viewBox="0 0 44 35">
+                  <path d="M26.7616 10.6207L21.8192 0L16.9973 10.5603C15.3699 14.1207 10.9096 15.2672 7.77534 12.9741L0 7.24138L6.56986 28.8448H37.0685L43.5781 7.72414L35.7425 13.0948C32.6685 15.2672 28.3288 14.0603 26.7616 10.6207Z" transform="translate(0 0.301727)"/>
+                  <rect width="30.4986" height="3.07759" transform="translate(6.56987 31.5603)"/>
+                </svg>
+                { name }
+              </span>
+            )}
+            </Consumer>
       
             <Counter 
                 score={ score }
@@ -43,15 +45,19 @@ class Player extends PureComponent {
       } else {
         return (
           <div className="player">
-            <span className="player-name">
-              <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
+          <Consumer>
+            {context => (
+              <span className="player-name">
+              <button className="remove-player" onClick={() => context.actions.removePlayer(id)}>✖</button>
               <svg className="is-high-score" viewBox="0 0 44 35">
                 <path d="M26.7616 10.6207L21.8192 0L16.9973 10.5603C15.3699 14.1207 10.9096 15.2672 7.77534 12.9741L0 7.24138L6.56986 28.8448H37.0685L43.5781 7.72414L35.7425 13.0948C32.6685 15.2672 28.3288 14.0603 26.7616 10.6207Z" transform="translate(0 0.301727)"/>
                 <rect width="30.4986" height="3.07759" transform="translate(6.56987 31.5603)"/>
               </svg>
-  
               { name }
             </span>
+            )}
+          </Consumer>
+
       
             <Counter 
                 score={ score }
