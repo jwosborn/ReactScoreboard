@@ -101,13 +101,12 @@ class App extends Component {
               id={player.id}
               key={player.id.toString()} 
               index={index}
-              removePlayer={ this.handleRemovePlayer }  
               isHighestScore={ highScore === player.score } 
               highScore={this.highScore}       
             />
           )}
 
-          <AddPlayerForm addPlayer={this.handleAddPlayer}/>
+          <AddPlayerForm />
         </div>
       </Provider>
     );
