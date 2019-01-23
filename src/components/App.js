@@ -82,7 +82,12 @@ class App extends Component {
     const highScore = this.handleFindHighScore();
 
     return (
-      <Provider value={this.state.players}>
+      <Provider value={{
+        players: this.state.players,
+        actions: {
+          changeScore: this.handleScoreChange
+        }
+        }}>
         <div className="scoreboard">
           <Header />
     
@@ -92,7 +97,6 @@ class App extends Component {
               name={player.name}
               score= { player.score }
               id={player.id}
-              changeScore={ this.handleScoreChange }
               key={player.id.toString()} 
               index={index}
               removePlayer={ this.handleRemovePlayer }  
