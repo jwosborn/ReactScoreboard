@@ -1,29 +1,18 @@
 import React from 'react';
 import Header from './Header';
-import Player from './Player';
-import {Consumer} from './Context';
+import Playerslist from './Playerslist';
 import AddPlayerForm from './AddPlayerForm';
 
 
   
 const App = () =>  {
   return (
-    <Consumer>
-      {context => {
-        return (
-          <div className="scoreboard">
+        <div className="scoreboard">
           <Header />
-    
           {/* Players list */}
-          {context.players.map( (player, index) =>
-            <Player />
-          )}
+          <Playerslist />
           <AddPlayerForm />
         </div>
-        );
-      }}
-
-    </Consumer>
     );
   }
 

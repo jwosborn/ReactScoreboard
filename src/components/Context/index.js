@@ -1,34 +1,35 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 
 const ScoreboardContext = React.createContext();
 
 export class Provider extends Component {
+
 state = {
-    players: [
-        {
-        name: "Guil",
-        score: 0,
-        id: 1,
-        isHighestScore: false
-        },
-        {
-        name: "Treasure",
-        score: 0,
-        id: 2,
-        isHighestScore: false
-        },
-        {
-        name: "Ashley",
-        score: 0,
-        id: 3,
-        isHighestScore: false
-        },
-        {
-        name: "James",
-        score: 0,
-        id: 4,
-        isHighestScore: false
-        }
+  players: [
+    {
+      name: "Guil",
+      score: 0,
+      id: 1,
+      isHighestScore: false
+    },
+    {
+      name: "Treasure",
+      score: 0,
+      id: 2,
+      isHighestScore: false
+    },
+    {
+      name: "Ashley",
+      score: 0,
+      id: 3,
+      isHighestScore: false
+    },
+    {
+      name: "James",
+      score: 0,
+      id: 4,
+      isHighestScore: false
+    }
     ]
 };
 
@@ -79,13 +80,13 @@ this.setState( prevState => {
             <ScoreboardContext.Provider value={{
                 players: this.state.players,
                 actions: {
-                  changeScore: this.handleScoreChange,
-                  removePlayer: this.handleRemovePlayer,
-                  addPlayer: this.handleAddPlayer,
-                  handleFindHighScore: this.handleFindHighScore
+                    changeScore: this.handleScoreChange,
+                    removePlayer: this.handleRemovePlayer,
+                    addPlayer: this.handleAddPlayer,
+                    handleFindHighScore: this.handleFindHighScore
                 }
                 }}> 
-                {this.props.children}
+                { this.props.children }
             </ScoreboardContext.Provider>
         );
     }
