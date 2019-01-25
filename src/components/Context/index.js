@@ -50,15 +50,23 @@ this.setState( prevState => {
 });
 }
 
-handleFindHighScore = () => {
+handleFindHighScore = (index) => {
     const scores = this.state.players.map( p => p.score );
     const highScore = Math.max(...scores);
     if (highScore) {
-        return highScore;
-    } return null;
+      this.setState( prevState => {
+        return {
+        players: prevState.players[index].isHighestScore = true
+        };
+      })
+    } return null 
+  }
+
+addHighScore = () => {
+    if (this.state.players.isHighestScore === true) {
+        return ('className=' + '"is-high-score"');
+      }   
     }
-
-
 
 handleAddPlayer = (name) => {
 this.setState( prevState => {
